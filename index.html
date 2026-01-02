@@ -1,203 +1,419 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- YAHAN APNA NAAM DAAL DO TITLE ME -->
-    <title>My Portfolio</title>
-    <style>
-        /* Reset & Basic Styles */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: #333; background: #f4f4f4; }
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-        .container { max-width: 1200px; margin: auto; padding: 0 20px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ritesh Kumar Singh | Portfolio</title>
 
-        /* Navigation */
-        nav { position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.8); padding: 15px 0; z-index: 100; }
-        nav ul { display: flex; justify-content: center; gap: 30px; }
-        nav a { color: white; font-weight: bold; transition: 0.3s; }
-        nav a:hover { color: #00aaff; }
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-        /* Hero Section */
-        #hero { height: 100vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://via.placeholder.com/1920x1080') center/cover no-repeat; display: flex; align-items: center; justify-content: center; text-align: center; color: white; }
-        #hero img { width: 250px; height: 250px; border-radius: 50%; border: 5px solid white; margin-bottom: 20px; object-fit: cover; }
-        #hero h1 { font-size: 3.5rem; margin-bottom: 10px; }
-        #hero p { font-size: 1.5rem; }
+<style>
+/* ================= ROOT VARIABLES ================= */
+:root {
+    --primary: #0d6efd;
+    --secondary: #6610f2;
+    --dark: #0b0f19;
+    --light: #f8f9fa;
+    --gray: #6c757d;
+    --gradient: linear-gradient(135deg, #0d6efd, #6610f2);
+}
 
-        /* Sections */
-        section { padding: 80px 0; background: white; }
-        section:nth-child(even) { background: #f0f0f0; }
-        h2 { text-align: center; font-size: 2.5rem; margin-bottom: 50px; color: #222; }
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
 
-        /* About */
-        #about p { max-width: 800px; margin: auto; font-size: 1.1rem; text-align: center; }
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--light);
+    color: #222;
+    line-height: 1.7;
+}
 
-        /* Skills */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; text-align: center; }
-        .skill { background: #00aaff; color: white; padding: 20px; border-radius: 10px; font-weight: bold; }
+img {
+    max-width: 100%;
+    display: block;
+}
 
-        /* Projects */
-        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .project-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: 0.3s; }
-        .project-card:hover { transform: translateY(-10px); }
-        .project-card img { width: 100%; height: 200px; object-fit: cover; }
-        .project-info { padding: 20px; }
-        .project-info h3 { margin-bottom: 10px; }
+a {
+    text-decoration: none;
+    color: inherit;
+}
 
-        /* Contact */
-        #contact form { max-width: 600px; margin: auto; display: grid; gap: 15px; }
-        #contact input, #contact textarea { padding: 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; }
-        #contact button { padding: 15px; background: #00aaff; color: white; border: none; cursor: pointer; font-size: 1.1rem; border-radius: 5px; }
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
 
-        /* Footer */
-        footer { background: #222; color: white; text-align: center; padding: 30px 0; }
-        .social-links { margin-top: 15px; }
-        .social-links a { margin: 0 15px; font-size: 1.5rem; color: white; }
+/* ================= NAVBAR ================= */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(11, 15, 25, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 15px 0;
+    z-index: 1000;
+}
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            #hero h1 { font-size: 2.5rem; }
-            nav ul { flex-direction: column; gap: 15px; }
-        }
-    </style>
+nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    list-style: none;
+}
+
+nav a {
+    color: #fff;
+    font-weight: 500;
+    position: relative;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    left: 0;
+    bottom: -6px;
+    transition: 0.3s;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
+/* ================= HERO ================= */
+#hero {
+    height: 100vh;
+    background: linear-gradient(rgba(11,15,25,.8), rgba(11,15,25,.8)),
+    url('https://via.placeholder.com/1920x1080') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+}
+
+#hero img {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 6px solid var(--primary);
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+
+#hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+}
+
+#hero p {
+    font-size: 1.3rem;
+    color: #dcdcdc;
+}
+
+/* ================= SECTIONS ================= */
+section {
+    padding: 100px 0;
+}
+
+section:nth-child(even) {
+    background: #f1f3f6;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2.6rem;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+h2::after {
+    content: "";
+    width: 80px;
+    height: 4px;
+    background: var(--gradient);
+    display: block;
+    margin: 15px auto 0;
+    border-radius: 5px;
+}
+
+/* ================= ABOUT ================= */
+#about p {
+    max-width: 850px;
+    margin: auto;
+    font-size: 1.1rem;
+    color: var(--gray);
+    text-align: center;
+}
+
+/* ================= SKILLS ================= */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 25px;
+}
+
+.skill {
+    background: #fff;
+    padding: 25px;
+    border-radius: 15px;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,.08);
+    transition: 0.3s;
+}
+
+.skill:hover {
+    transform: translateY(-10px);
+    background: var(--gradient);
+    color: #fff;
+}
+
+/* ================= PROJECTS ================= */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 35px;
+}
+
+.project-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0,0,0,.1);
+    transition: 0.4s;
+}
+
+.project-card:hover {
+    transform: translateY(-12px);
+}
+
+.project-card img {
+    height: 220px;
+    object-fit: cover;
+}
+
+.project-info {
+    padding: 25px;
+}
+
+.project-info h3 {
+    margin-bottom: 10px;
+}
+
+.project-info p {
+    color: var(--gray);
+    margin-bottom: 15px;
+}
+
+.project-info a {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* ================= CONTACT ================= */
+#contact form {
+    max-width: 650px;
+    margin: auto;
+    display: grid;
+    gap: 20px;
+}
+
+#contact input,
+#contact textarea {
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+}
+
+#contact input:focus,
+#contact textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+#contact button {
+    background: var(--gradient);
+    color: #fff;
+    border: none;
+    padding: 15px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#contact button:hover {
+    opacity: 0.9;
+}
+
+/* ================= FOOTER ================= */
+footer {
+    background: var(--dark);
+    color: #fff;
+    text-align: center;
+    padding: 40px 0;
+}
+
+.social-links a {
+    margin: 0 15px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.social-links a:hover {
+    color: var(--primary);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+    #hero h1 {
+        font-size: 2.4rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    section {
+        padding: 70px 0;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <ul>
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+<!-- NAVBAR -->
+<nav>
+    <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
 
-    <!-- Hero Section -->
-    <section id="hero">
-        <div>
-            <!-- YAHAN APNI PHOTO KA URL DAAL DO (Imgur, GitHub ya kahi upload karke link daalo) -->
-            <img src="profile.jpeg" alt="Your Photo">
-            <!-- YAHAN APNA POORA NAAM DAAL DO -->
-            <h1>Ritesh Kumar Singh</h1>
-            <!-- YAHAN APNA PROFESSION/TAGLINE DAAL DO (jaise Web Developer, UI/UX Designer, etc.) -->
-            <p>Full Stack Developer | Designer | Freelancer</p>
-        </div>
-    </section>
+<!-- HERO -->
+<section id="hero">
+    <div>
+        <img src="profile.jpeg" alt="Profile">
+        <h1>Ritesh Kumar Singh</h1>
+        <p>Full Stack Developer | Designer | Freelancer</p>
+    </div>
+</section>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <!-- YAHAN APNE BARE ME 3-5 LINE KA INTRODUCTION LIKH DO -->
-            <p>Hi, I'm a passionate developer with experience in web technologies. I love building modern, responsive websites and solving real-world problems with code. In my free time, I explore new ideas  and contribute to open-source projects.</p>
-        </div>
-    </section>
+<!-- ABOUT -->
+<section id="about">
+    <div class="container">
+        <h2>About Me</h2>
+        <p>
+            I am a passionate full-stack developer who loves building clean, scalable and
+            modern web applications. I enjoy solving real-world problems and continuously
+            learning new technologies.
+        </p>
+    </div>
+</section>
 
-    <!-- Skills Section -->
-    <section id="skills">
-        <div class="container">
-            <h2>Skills</h2>
-            <div class="skills-grid">
-                <!-- YAHAN APNI SKILLS ADD YA REMOVE KAR DO (jitni chahiye utni div banao) -->
-                <div class="skill">HTML/CSS</div>
-                <div class="skill">JavaScript</div>
-                <div class="skill">React</div>
-                <div class="skill">Node.js</div>
-                <div class="skill">Python</div>
-                <div class="skill">Git</div>
-                <div class="skill">UI/UX Design</div>
-                <div class="skill">MongoDB</div>
-                <!-- YAHAN AUR SKILLS ADD KAR SAKTE HO -->
-            </div>
+<!-- SKILLS -->
+<section id="skills">
+    <div class="container">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+            <div class="skill">HTML & CSS</div>
+            <div class="skill">JavaScript</div>
+            <div class="skill">React</div>
+            <div class="skill">Node.js</div>
+            <div class="skill">MongoDB</div>
+            <div class="skill">Git & GitHub</div>
+            <div class="skill">UI/UX Design</div>
+            <div class="skill">Python</div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="container">
-            <h2>Projects</h2>
-            <div class="projects-grid">
-                <!-- PROJECT 1 -->
-                <div class="project-card">
-                    <!-- YAHAN APNE PROJECT KA SCREENSHOT URL DAAL DO -->
-                    <img src="e-commerce.png" alt="Project 1">
-                    <div class="project-info">
-                        <!-- YAHAN PROJECT KA NAAM DAAL DO -->
-                        <h3>E-Commerce Website</h3>
-                        <!-- YAHAN SHORT DESCRIPTION DAAL DO -->
-                        <p>Built with React & Node.js. Features: Cart, Payment Integration.</p>
-                        <!-- YAHAN LIVE DEMO AUR GITHUB KE LINK DAAL DO -->
-                        <a href="#" target="_blank">Live Demo</a> | <a href="#" target="_blank">GitHub</a>
-                    </div>
+<!-- PROJECTS -->
+<section id="projects">
+    <div class="container">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+
+            <div class="project-card">
+                <img src="e-commerce.png" alt="">
+                <div class="project-info">
+                    <h3>E-Commerce Website</h3>
+                    <p>React & Node.js based online store with cart and payment features.</p>
+                    <a href="#">Live Demo</a> | <a href="#">GitHub</a>
                 </div>
-
-                <!-- PROJECT 2 -->
-                <div class="project-card">
-                    <img src="personal blog.png" alt="Project 2">
-                    <div class="project-info">
-                        <h3>Personal Blog</h3>
-                        <p>Next.js blog with MDX support and SEO optimization.</p>
-                        <a href="#" target="_blank">Live Demo</a> | <a href="#" target="_blank">GitHub</a>
-                    </div>
-                </div>
-
-                <!-- PROJECT 3 -->
-                <div class="project-card">
-                    <img src="task manager.png" alt="Project 3">
-                    <div class="project-info">
-                        <h3>Task Manager App</h3>
-                        <p>Full-stack app with user auth and real-time updates.</p>
-                        <a href="#" target="_blank">Live Demo</a> | <a href="#" target="_blank">GitHub</a>
-                    </div>
-                </div>
-
-                <!-- YAHAN AUR PROJECTS ADD KAR SAKTE HO (same structure copy karke) -->
             </div>
-        </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <h2>Contact Me</h2>
-            <!-- FORM ACTION ME FORMSPREE YA KOI AUR SERVICE KA ENDPOINT DAAL DO (free mein messages aayenge email pe) -->
-            <form action="https://formspree.io/f/your-form-id" method="POST">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <!-- YAHAN COPYRIGHT ME APNA NAAM AUR YEAR DAAL DO -->
-            <p>&copy; 2026 ritesh kumar Singh. All Rights Reserved.</p>
-            <div class="social-links">
-                <!-- YAHAN APNE SOCIAL LINKS DAAL DO -->
-                <a href="https://www.linkedin.com/in/mr-ritesh-singh-700693383?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">LinkedIn</a> |
-                <a href="https://github.com/riteshsingh-rr" target="_blank">GitHub</a> |
-                <a href="https://x.com/RiteshRaj468246" target="_blank">Twitter</a>
-                <!-- AUR SOCIALS ADD KAR SAKTE HO -->
+            <div class="project-card">
+                <img src="personal blog.png" alt="">
+                <div class="project-info">
+                    <h3>Personal Blog</h3>
+                    <p>SEO optimized blog built with Next.js and MDX support.</p>
+                    <a href="#">Live Demo</a> | <a href="#">GitHub</a>
+                </div>
             </div>
-        </div>
-    </footer>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-            });
-        });
-    </script>
+            <div class="project-card">
+                <img src="task manager.png" alt="">
+                <div class="project-info">
+                    <h3>Task Manager App</h3>
+                    <p>Full-stack app with authentication and real-time updates.</p>
+                    <a href="#">Live Demo</a> | <a href="#">GitHub</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="container">
+        <h2>Contact Me</h2>
+        <form action="https://formspree.io/f/your-form-id" method="POST">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea rows="6" name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Ritesh Kumar Singh. All Rights Reserved.</p>
+    <div class="social-links">
+        <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/" target="_blank">GitHub</a>
+        <a href="https://x.com/" target="_blank">Twitter</a>
+    </div>
+</footer>
+
+<!-- JS -->
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href'))
+            .scrollIntoView({ behavior: 'smooth' });
+    });
+});
+</script>
+
 </body>
 </html>

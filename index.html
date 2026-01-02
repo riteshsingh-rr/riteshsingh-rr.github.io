@@ -9,12 +9,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ================= ROOT VARIABLES ================= */
+/* ================= ROOT ================= */
 :root {
     --primary: #0d6efd;
     --secondary: #6610f2;
+    --accent: #20c997;
     --dark: #0b0f19;
-    --light: #f8f9fa;
+    --light: #ffffff;
     --gray: #6c757d;
     --gradient: linear-gradient(135deg, #0d6efd, #6610f2);
 }
@@ -29,14 +30,64 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: var(--light);
+    background: #0b0f19;
     color: #222;
-    line-height: 1.7;
 }
 
-img {
-    max-width: 100%;
-    display: block;
+/* ================= ANIMATED BACKGROUND ================= */
+.bg-wrapper {
+    position: relative;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 20% 20%, #6610f2, transparent 40%),
+        radial-gradient(circle at 80% 10%, #0d6efd, transparent 40%),
+        radial-gradient(circle at 50% 90%, #20c997, transparent 40%);
+    overflow: hidden;
+}
+
+/* Floating blobs */
+.bg-wrapper::before,
+.bg-wrapper::after {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(135deg, #6610f2, #0d6efd);
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.4;
+    animation: float 18s infinite alternate ease-in-out;
+    z-index: -1;
+}
+
+.bg-wrapper::after {
+    width: 400px;
+    height: 400px;
+    background: linear-gradient(135deg, #20c997, #0d6efd);
+    animation-duration: 22s;
+    top: 60%;
+    left: 60%;
+}
+
+.bg-wrapper::before {
+    top: 10%;
+    left: 5%;
+}
+
+@keyframes float {
+    from {
+        transform: translate(0, 0);
+    }
+    to {
+        transform: translate(80px, -80px);
+    }
+}
+
+/* ================= COMMON ================= */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
 }
 
 a {
@@ -44,20 +95,14 @@ a {
     color: inherit;
 }
 
-.container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 0 20px;
-}
-
 /* ================= NAVBAR ================= */
 nav {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(11, 15, 25, 0.85);
-    backdrop-filter: blur(10px);
     padding: 15px 0;
+    background: rgba(11,15,25,0.7);
+    backdrop-filter: blur(12px);
     z-index: 1000;
 }
 
@@ -92,8 +137,6 @@ nav a:hover::after {
 /* ================= HERO ================= */
 #hero {
     height: 100vh;
-    background: linear-gradient(rgba(11,15,25,.8), rgba(11,15,25,.8)),
-    url('https://via.placeholder.com/1920x1080') center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -120,20 +163,21 @@ nav a:hover::after {
     color: #dcdcdc;
 }
 
-/* ================= SECTIONS ================= */
+/* ================= SECTIONS (GLASS) ================= */
 section {
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(15px);
+    border-radius: 25px;
+    margin: 70px auto;
     padding: 100px 0;
-}
-
-section:nth-child(even) {
-    background: #f1f3f6;
+    max-width: 1200px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
 }
 
 h2 {
     text-align: center;
     font-size: 2.6rem;
     margin-bottom: 60px;
-    position: relative;
 }
 
 h2::after {
@@ -148,7 +192,7 @@ h2::after {
 
 /* ================= ABOUT ================= */
 #about p {
-    max-width: 850px;
+    max-width: 800px;
     margin: auto;
     font-size: 1.1rem;
     color: var(--gray);
@@ -186,7 +230,7 @@ h2::after {
 }
 
 .project-card {
-    background: #fff;
+    background: rgba(255,255,255,0.95);
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 15px 30px rgba(0,0,0,.1);
@@ -199,6 +243,7 @@ h2::after {
 
 .project-card img {
     height: 220px;
+    width: 100%;
     object-fit: cover;
 }
 
@@ -236,12 +281,6 @@ h2::after {
     font-size: 1rem;
 }
 
-#contact input:focus,
-#contact textarea:focus {
-    outline: none;
-    border-color: var(--primary);
-}
-
 #contact button {
     background: var(--gradient);
     color: #fff;
@@ -250,52 +289,38 @@ h2::after {
     font-size: 1.1rem;
     border-radius: 8px;
     cursor: pointer;
-    transition: 0.3s;
-}
-
-#contact button:hover {
-    opacity: 0.9;
 }
 
 /* ================= FOOTER ================= */
 footer {
-    background: var(--dark);
-    color: #fff;
     text-align: center;
     padding: 40px 0;
-}
-
-.social-links a {
-    margin: 0 15px;
     color: #fff;
-    font-weight: 500;
-}
-
-.social-links a:hover {
-    color: var(--primary);
 }
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
-    #hero h1 {
-        font-size: 2.4rem;
-    }
-
     nav ul {
         flex-direction: column;
         gap: 15px;
     }
 
+    #hero h1 {
+        font-size: 2.4rem;
+    }
+
     section {
-        padding: 70px 0;
+        padding: 70px 20px;
+        margin: 50px 15px;
     }
 }
 </style>
 </head>
 
 <body>
+<div class="bg-wrapper">
 
-<!-- NAVBAR -->
+<!-- NAV -->
 <nav>
     <ul>
         <li><a href="#hero">Home</a></li>
@@ -320,9 +345,8 @@ footer {
     <div class="container">
         <h2>About Me</h2>
         <p>
-            I am a passionate full-stack developer who loves building clean, scalable and
-            modern web applications. I enjoy solving real-world problems and continuously
-            learning new technologies.
+            I am a passionate full-stack developer focused on building modern, scalable,
+            and user-friendly web applications.
         </p>
     </div>
 </section>
@@ -351,29 +375,29 @@ footer {
         <div class="projects-grid">
 
             <div class="project-card">
-                <img src="e-commerce.png" alt="">
+                <img src="e-commerce.png">
                 <div class="project-info">
                     <h3>E-Commerce Website</h3>
-                    <p>React & Node.js based online store with cart and payment features.</p>
-                    <a href="#">Live Demo</a> | <a href="#">GitHub</a>
+                    <p>Modern online store built with React & Node.js.</p>
+                    <a href="#">Live</a> | <a href="#">GitHub</a>
                 </div>
             </div>
 
             <div class="project-card">
-                <img src="personal blog.png" alt="">
+                <img src="personal blog.png">
                 <div class="project-info">
                     <h3>Personal Blog</h3>
-                    <p>SEO optimized blog built with Next.js and MDX support.</p>
-                    <a href="#">Live Demo</a> | <a href="#">GitHub</a>
+                    <p>SEO optimized blog built with Next.js.</p>
+                    <a href="#">Live</a> | <a href="#">GitHub</a>
                 </div>
             </div>
 
             <div class="project-card">
-                <img src="task manager.png" alt="">
+                <img src="task manager.png">
                 <div class="project-info">
                     <h3>Task Manager App</h3>
-                    <p>Full-stack app with authentication and real-time updates.</p>
-                    <a href="#">Live Demo</a> | <a href="#">GitHub</a>
+                    <p>Full-stack app with authentication.</p>
+                    <a href="#">Live</a> | <a href="#">GitHub</a>
                 </div>
             </div>
 
@@ -385,11 +409,11 @@ footer {
 <section id="contact">
     <div class="container">
         <h2>Contact Me</h2>
-        <form action="https://formspree.io/f/your-form-id" method="POST">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea rows="6" name="message" placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="6" placeholder="Your Message" required></textarea>
+            <button>Send Message</button>
         </form>
     </div>
 </section>
@@ -397,23 +421,8 @@ footer {
 <!-- FOOTER -->
 <footer>
     <p>© 2026 Ritesh Kumar Singh. All Rights Reserved.</p>
-    <div class="social-links">
-        <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
-        <a href="https://github.com/" target="_blank">GitHub</a>
-        <a href="https://x.com/" target="_blank">Twitter</a>
-    </div>
 </footer>
 
-<!-- JS -->
-<script>
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href'))
-            .scrollIntoView({ behavior: 'smooth' });
-    });
-});
-</script>
-
+</div>
 </body>
 </html>
